@@ -12,48 +12,18 @@
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 
-<script>
-function includeHTML() {
-  var z, i, elmnt, file, xhttp;
-  /* Loop through a collection of all HTML elements: */
-  z = document.getElementsByTagName("*");
-  for (i = 0; i < z.length; i++) {
-    elmnt = z[i];
-    /*search for elements with a certain atrribute:*/
-    file = elmnt.getAttribute("w3-include-html");
-    if (file) {
-      /* Make an HTTP request using the attribute value as the file name: */
-      xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4) {
-          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-          /* Remove the attribute, and call this function once more: */
-          elmnt.removeAttribute("w3-include-html");
-          includeHTML();
-        }
-      } 
-      xhttp.open("GET", file, true);
-      xhttp.send();
-      /* Exit the function: */
-      return;
-    }
-  }
-}
-</script>
-
 <body>
 
 <div id="layout">
-    <!-- Menu toggle -->
+    <!-- Menu toggle
     <a href="#menu" id="menuLink" class="menu-link">
         <span></span>
     </a>
 		
 	<div w3-include-html="menu.html"></div>
 	
-    </div>
-	
+
+	 -->
 
 
     <div id="main">
@@ -61,11 +31,36 @@ function includeHTML() {
             <h1>Simulador de evacuación en ciudades costeras</h1>
             <!-- <h2>A subtitle for your page goes here</h2> -->
         </div>
+		
+		<div class="pure-menu pure-menu-horizontal">
+		    <!--<a href="#" class="pure-menu-heading pure-menu-link">Descripción</a>-->
+		    <ul class="pure-menu-list">
+		        <li class="pure-menu-item">
+		            <a href="#descripcion" class="pure-menu-link">Descripción</a>
+		        </li>
+		        <li class="pure-menu-item">
+		            <a href="#modelo" class="pure-menu-link">Modelo</a>
+		        </li>
+		        <li class="pure-menu-item">
+		            <a href="#implementacion" class="pure-menu-link">Implementación</a>
+		        </li>
+		        <li class="pure-menu-item">
+		            <a href="#ejemplos" class="pure-menu-link">Ejemplos</a>
+		        </li>
+		    </ul>
+		</div>
 
+
+		<!--
+		 *****************************
+	            SECCION DESCRIPCION 
+	     *****************************
+		-->
+		
 		<a id="descripcion"></a>
         <div class="content">
 			<h2 class="content-subhead">Descripci&oacute;n</h2>
-				En este trabajo se presenta un simulador basado en agentes denominado Disaster Evacuation and Mobility Patterns Simulator (DEMPS). El simulador modela el comportamiento de personas en situaciones de evacuación masiva en áreas costeras. Los habitantes de la zona de estudio se modelan con dos tipos de agentes: Residentes y Visitantes. Cuando la evacuación se produce, los agentes Residentes seleccionan la ruta más rápida a las zonas seguras, utilizando el algoritmo de Dijkstra [1] implementado en la libraría Open Source Routing Machine (OSRM) [2]. Los agentes Visitantes tratan de seguir a los agentes Residentes o caminar en forma aleatoria. Ambos tipos de agentes se mueven en un espacio continuo que es construido con datos geográficos. La distribución etárea de los agentes se basa en datos sensales. Los movimientos e interacciones de los agentes incluyen los detalles especificados en el Social Force Model (SFM) [3] y Required Safe Egress Time Evacuation Model (RSET) [4]. Además, cada agente toma en cuenta la densidad de personas en torno a él para determninar su velocidad. Si hay personas que están adelante, dentro de su área de covertura, el agent disminuye su velocidad. Finalmente, el simulador entrega reportes sobre  variables de interés definidas como la distancia hacia las zonas seguras separados por rangos etáreos. Esto puede ser útil para quienes toman las decisiones, ya que pueden brindar ayuda especial en estos puntos críticos a las personas que no pueden llegar a zonas seguras.
+				El simulador desarrollado es un simulador basado en agentes, denominado Disaster Evacuation and Mobility Patterns Simulator (DEMPS), que modela el comportamiento de personas en situaciones de evacuación masiva en áreas costeras. Los habitantes de la zona de estudio se modelan con dos tipos de agentes: Residentes y Visitantes. Cuando la evacuación se produce, los agentes Residentes seleccionan la ruta más rápida a las zonas seguras, utilizando el algoritmo de Dijkstra [1] implementado en la libraría Open Source Routing Machine (OSRM) [2]. Los agentes Visitantes se clasifican inicialmente como Visitantes Tipo II, que caminan en forma aleatoria, sin rumbo definido. Estos agentes pueden, eventualmente, seguir a grupos de Residentes, tranformándose en Visitantes Tipo I. Ambos tipos de agentes se mueven en un espacio continuo que es construido en base a datos geográficos previos. Cada agente puede pertenecer a uno de los cuatro grupo etareos que están definidos. La distribución de agentes en estos grupos se basa en datos sensales. Los movimientos e interacciones de los agentes incluyen los detalles especificados en el Social Force Model (SFM) [3] y Required Safe Egress Time Evacuation Model (RSET) [4]. Además, cada agente toma en cuenta la densidad de personas en torno a él para determninar su velocidad. Si hay personas que están adelante, dentro de su área de covertura, el agent disminuye su velocidad. Finalmente, el simulador entrega reportes sobre  variables de interés definidas como la distancia hacia las zonas seguras separados por rangos etáreos. Esto puede ser útil para quienes toman las decisiones, ya que pueden brindar ayuda especial en estos puntos críticos a las personas que no pueden llegar a zonas seguras.
 				
 				<!--
 				In this work we present an agent-based simulator called Disaster Evacuation and Mobility Patterns Simulator (DEMPS). The simulator  models the behavior of people in situations of mass evacuation in coastal areas. There are two types of agents: residents and visitors. When evacuation occurs, resident agents select the fastest route to safe zones, using the  Dijkstra's algorithm [1] implemented in the Open Source Routing Machine (OSRM) library [2]. Visitors agents try to follow resident agents or walk randomly. Both types of agents move in a continuous space. The   movements and interactions of the agents include details specified in the Social Force Model (SFM) and also in the Required Safe Egress Time Evacuation Model (RSET) [3]. Our simulator uses geographic data and census data. It is important to highlight that for each agent our simulator takes into account the density of the population, the interaction with other agents and the its view  to compute the its walking speed. To this end, each agent has a covering radious. 
@@ -84,6 +79,14 @@ function includeHTML() {
 					<li>  Babrauskas, V., Fleming, J. M., & Don Russell, B. (2010). RSET/ASET, a flawed concept for fire safety assessment. Fire and Materials. https://doi.org/10.1002/fam.1025 </li>														
 				</ol>
 				
+			<a class="pure-button pure-button-primary" href="#">Top</a>
+			
+			<!--
+			 *****************************
+		            SECCION MODELO 
+		     *****************************
+			-->
+			
 			
 			<a id="modelo"></a>
 			<h2 class="content-subhead">Modelo del simulador</h2>
@@ -95,6 +98,15 @@ function includeHTML() {
 					<center>Figura 1.</center>	
                 </div>     					          
             </div>
+			
+			<a class="pure-button pure-button-primary" href="#">Top</a>
+			
+			<!--
+			 *****************************
+		            SECCION IMPLEMENTACION 
+		     *****************************
+			-->
+			
 			
 			<a id="implementacion"></a>
 			<h2 class="content-subhead">Implementaci&oacute;n del simulador</h2>
@@ -118,12 +130,23 @@ function includeHTML() {
 				<li>\cite{fabri2011cgal}</li>
 			</ol>
 			
+			<a class="pure-button pure-button-primary" href="#">Top</a>
+			
+			<!--
+			 *****************************
+		            SECCION EJEMPLOS 
+		     *****************************
+			-->
+			
+			
 			
 			<a id="ejemplos"></a>
             <h2 class="content-subhead">Ejemplo de uso</h2>
             <p>
                 Para mostrar algunos resultados que se pueden obtener con el simulador, se presentan tres casos de estudio: <a href="valpo.html">Valpara&iacute;so</a>, <a href="#">Vi&ntilde;a del Mar</a> e <a href=#">Iquique</a>.
             </p>
+			
+			<a class="pure-button pure-button-primary" href="#">Top</a>
 
 			<a id="documentos"></a>
             <h2 class="content-subhead">Documentos</h2>
@@ -154,10 +177,9 @@ function includeHTML() {
     </div>
 </div>
 
+<!--
 <script src="js/ui.js"></script>
-<script>
-includeHTML();
-</script>
+-->
 
 </body>
 </html>
