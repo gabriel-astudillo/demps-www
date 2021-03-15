@@ -1,0 +1,12 @@
+{
+    "deltaT": 1.0,
+    "frameMax": 3600,
+    "frameMin": 0,
+    "frameStep": 10,
+    "input": {
+        "area": "input/area.geojson",
+        "initial_zones": "input/initial_zones.geojson",
+        "reference_zones": "input/reference_zones.geojson"
+    },
+    "pathFileSim": "agents/"
+}
