@@ -1,2 +1,2 @@
 numExperiment:tsim:calibrationTime:deltaT:Residents:Visitors:timeExecMakeAgents:timeExecCal:timeExecSim:maxMemory:agentsMem
-1:3600:100:1:30000:3000:3223:35245:72917:256912:16684
+1:3600:100:1:30000:3000:8387:16417:19082:263868:16948
